@@ -6,6 +6,24 @@ plafond, Re ≈ 5 100, mesures laser-Doppler.
 
 ![Validation k-ε contre les mesures](figures/validation_nielsen.png)
 
+## Géométrie et maillage
+
+![Schéma de la pièce](figures/schema_piece.png)
+
+Maillage structuré généré en Python (classy_blocks), découpé en 3 blocs pour séparer les conditions limites :
+
+![Découpage en blocs](figures/decoupage_blocs.png)
+
+| Maillage A : k-ε, lois de paroi (7 986 mailles) | Maillage B : k-ω SST, y+ ≈ 1 (16 014 mailles) |
+| --- | --- |
+| ![Maillage A](figures/maillage_A.png) | ![Maillage B](figures/maillage_B.png) |
+
+## Topologie de l'écoulement
+
+| k-ε : une seule grande recirculation | k-ω SST : deux cellules contrarotatives |
+| --- | --- |
+| ![Lignes de courant k-ε](figures/lignes_courant_kepsilon.png) | ![Lignes de courant SST](figures/lignes_courant_SST.png) |
+
 ## Résultats
 
 | Ligne de mesure | k-ε + lois de paroi (écart moyen) | k-ω SST, y+ ≈ 1 (écart moyen) |
