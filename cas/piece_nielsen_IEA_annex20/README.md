@@ -64,3 +64,8 @@ python3 etude_maillage.py
 - Mesures : [Aalborg University, 2D benchmark test](https://en.build.aau.dk/web/cfd-benchmarks/two-dimensional-benchmark-test).
 - Celik I. B. et al. (2008), *Procedure for Estimation and Reporting of Uncertainty Due to
   Discretization in CFD Applications*, J. Fluids Eng. 130.
+
+## Rapport complet
+
+[Rapport d'étude (PDF, 12 pages)](rapport/rapport_piece_nielsen.pdf) : méthode, maillage, validation,
+comparaison des modèles de turbulence, convergence en maillage, limites et perspectives.
