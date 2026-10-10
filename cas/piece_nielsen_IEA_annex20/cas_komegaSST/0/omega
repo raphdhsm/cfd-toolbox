@@ -1,0 +1,44 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas B : k-omega SST, couche limite resolue (y+ ~ 1)
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Taux de dissipation specifique (1/s)
+// omega0 = eps0 / (Cmu k0) = 6,59e-4 / (0,09 x 4,97e-4)
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform 14.733;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 14.733;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 14.733;
+        value           uniform 14.733;
+    }
+    walls
+    {
+        type            omegaWallFunction;   // valable a tout y+ : en sous-couche visqueuse
+        value           uniform 14.733;    // elle impose la valeur de paroi 6 nu / (beta1 y^2)
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //

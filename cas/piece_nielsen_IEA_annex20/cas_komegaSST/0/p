@@ -1,0 +1,40 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas B : k-omega SST, couche limite resolue (y+ ~ 1)
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Pression cinematique p/rho (m2/s2) : en incompressible, OpenFOAM divise par rho
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            zeroGradient;   // la vitesse est imposee ici, donc p est libre
+    }
+    outlet
+    {
+        type            fixedValue;     // niveau de reference de la pression
+        value           uniform 0;
+    }
+    walls
+    {
+        type            zeroGradient;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,42 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas B : k-omega SST, couche limite resolue (y+ ~ 1)
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Vitesse (m/s)
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);    // air immobile au depart
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;           // vitesse imposee dans la fente
+        value           uniform (0.455 0 0);   // U0 = 0,455 m/s selon +x
+    }
+    outlet
+    {
+        type            inletOutlet;          // sortie libre ; bloque l'air qui voudrait rentrer
+        inletValue      uniform (0 0 0);
+        value           uniform (0 0 0);
+    }
+    walls
+    {
+        type            noSlip;               // vitesse nulle a la paroi
+    }
+    frontAndBack
+    {
+        type            empty;                // cas 2D
+    }
+}
+
+// ************************************************************************* //

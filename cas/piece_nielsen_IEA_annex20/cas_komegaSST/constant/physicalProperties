@@ -1,0 +1,19 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas B : k-omega SST, couche limite resolue (y+ ~ 1)
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      physicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Air a ~20 degC
+viscosityModel  constant;
+
+nu              [0 2 -1 0 0 0 0] 1.5e-05;
+
+// ************************************************************************* //

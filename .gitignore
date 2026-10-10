@@ -1,0 +1,19 @@
+# --- Résultats OpenFOAM (lourds, régénérables par ./Allrun) ---
+# dossiers de temps : tout dossier dont le nom commence par un chiffre de 1 à 9
+[1-9]*/
+processor*/
+postProcessing/
+log.*
+constant/polyMesh/
+# yPlus, wallShearStress... écrits dans 0/ par foamPostProcess si -latestTime = 0
+0/yPlus
+
+# --- Sorties générées par les scripts ---
+etude_maillage/
+profils_*.csv
+
+# --- Python / éditeurs ---
+__pycache__/
+*.pyc
+.vscode/
+*Zone.Identifier*

@@ -1,0 +1,23 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas A : k-epsilon + lois de paroi
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      momentumTransport;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+simulationType  RAS;
+
+RAS
+{
+    model           kEpsilon;   // k-epsilon standard (Launder-Spalding), celui de l'Annex 20
+    turbulence      on;
+    printCoeffs     on;         // affiche Cmu, C1, C2... dans le log
+}
+
+// ************************************************************************* //

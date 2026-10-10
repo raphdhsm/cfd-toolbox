@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas B : k-omega SST, couche limite resolue (y+ ~ 1)
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p
+    {
+        solver          GAMG;
+        smoother        GaussSeidel;
+        tolerance       1e-07;
+        relTol          0.1;
+    }
+
+    "(U|k|omega)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-07;
+        relTol          0.1;
+    }
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;   // maillage orthogonal : pas de correction
+    consistent      yes;          // SIMPLEC : permet des relaxations plus fortes
+
+    // Arret automatique quand tous les residus initiaux passent sous ces seuils
+    residualControl
+    {
+        p               1e-05;
+        U               1e-06;
+        "(k|omega)"   1e-06;
+    }
+}
+
+relaxationFactors
+{
+    equations
+    {
+        U               0.9;
+        ".*"            0.7;      // k et omega un peu plus relaxes
+    }
+}
+
+// ************************************************************************* //

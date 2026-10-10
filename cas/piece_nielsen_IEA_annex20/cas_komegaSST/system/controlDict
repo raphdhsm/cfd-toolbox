@@ -1,0 +1,38 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas B : k-omega SST, couche limite resolue (y+ ~ 1)
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     foamRun;
+solver          incompressibleFluid;   // solveur incompressible (remplace simpleFoam/pimpleFoam)
+
+startFrom       latestTime;
+startTime       0;
+stopAt          endTime;
+endTime         10000;      // calcul stationnaire : 1 "pas de temps" = 1 iteration SIMPLE
+deltaT          1;
+
+writeControl    timeStep;
+writeInterval   100;       // ecrit les champs toutes les 100 iterations
+purgeWrite      0;         // garde toutes les ecritures
+
+writeFormat     ascii;
+writePrecision  8;
+timeFormat      general;
+runTimeModifiable true;
+
+functions
+{
+    // Ecrit les residus dans postProcessing/residuals pour suivre la convergence
+    #includeFunc residuals(p, U, k, omega)
+}
+
+// ************************************************************************* //

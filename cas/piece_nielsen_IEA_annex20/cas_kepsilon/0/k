@@ -1,0 +1,44 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  Piece ventilee de Nielsen (IEA Annex 20) - cas A : k-epsilon + lois de paroi
+  OpenFOAM 13 (openfoam.org)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Energie cinetique turbulente (m2/s2)
+// k0 = 1,5 (I U0)^2 avec I = 4 %  (specification Nielsen)
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0.000497;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 0.000497;
+    }
+    outlet
+    {
+        type            inletOutlet;      // k sort librement ; k0 si de l'air rentre
+        inletValue      uniform 0.000497;
+        value           uniform 0.000497;
+    }
+    walls
+    {
+        type            kqRWallFunction;  // loi de paroi pour k
+        value           uniform 0.000497;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //
